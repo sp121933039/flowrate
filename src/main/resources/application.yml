@@ -6,16 +6,6 @@ server:
     uri-encoding: utf-8
 
 
-  mail:
-    #邮箱服务器地址
-    host: smtp.qq.com
-    #用户名
-    username: 1
-    #密码
-    password: 1
-    #编码
-    default-encoding: UTF-8
-
 phone: 0
 url:
   day: 1
