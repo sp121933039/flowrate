@@ -2,10 +2,12 @@ package com.sunpeng.flowrate.common;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 
 @Slf4j
 public  class HttpClientUtil {
@@ -15,7 +17,6 @@ public  class HttpClientUtil {
 
 
         log.info(url);
-        url="http://www.baidu.com";
 
 
         //1.使用默认的配置的httpclient
@@ -31,6 +32,8 @@ public  class HttpClientUtil {
             int code = response.getStatusLine().getStatusCode();
             if (code == 200){
                 log.info("请求成功");
+                HttpEntity entity = response.getEntity();
+                System.out.println(EntityUtils.toString(entity, "UTF-8"));
             }else{
                 log.info("请求失败");
             }
