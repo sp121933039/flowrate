@@ -1,18 +1,16 @@
-package com.sunpeng.flowrate.task;
-
-
+package com.sunpeng.flowrate.service.day.impl;
 
 import com.sunpeng.flowrate.common.HttpClientUtil;
+import com.sunpeng.flowrate.service.day.IOrderDayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Component
+@Service
 @Slf4j
-public class SchedulerDayTask {
+public class OrderDayService implements IOrderDayService {
 
     @Value("${phone}")
     private String phoneNumbers ;
@@ -20,9 +18,16 @@ public class SchedulerDayTask {
     @Value("${url.day}")
     private String url ;
 
-    @Scheduled(cron="0 5 0 * * ?")
-    private void process(){
-        String[] numbers = phoneNumbers.split(",");
+
+    @Override
+    public void process(String phones) {
+
+        String[] numbers;
+        if(null != phones &&!"".equals(phones)){
+            numbers = phones.split(",");
+        }else{
+            numbers = phoneNumbers.split(",");
+        }
         Arrays.stream(numbers).forEach(phone->{
             log.info("day:phone "+phone);
             try {
