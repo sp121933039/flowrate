@@ -21,7 +21,7 @@ public class OrderController {
     public String day(@RequestParam(name = "phone",required = false) String phone){
 
         orderDayService.process(phone);
-        
+
         return "ok";
     }
 
