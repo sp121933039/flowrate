@@ -20,7 +20,7 @@ public class SchedulerDayTask {
     @Value("${url.day}")
     private String url ;
 
-    @Scheduled(cron="0 5 0 * * ?")
+    @Scheduled(cron="0 30 0 * * ?")
     private void process(){
         String[] numbers = phoneNumbers.split(",");
         Arrays.stream(numbers).forEach(phone->{
